@@ -22,6 +22,7 @@ enum layers {
     _DVORAK = 0,
     _QWERTY,
     _COLEMAK_DH,
+    _MAC,
     _NAV,
     _SYM,
     _FUNCTION,
@@ -29,19 +30,22 @@ enum layers {
 };
 
 // Aliases for readability
-#define QWERTY   DF(_QWERTY)
-#define COLEMAK  DF(_COLEMAK_DH)
-#define DVORAK   DF(_DVORAK)
+#define QWERTY DF(_QWERTY)
+#define COLEMAK DF(_COLEMAK_DH)
+#define DVORAK DF(_DVORAK)
+#define MAC TG(_MAC)
 
-#define SYM      MO(_SYM)
-#define NAV      MO(_NAV)
-#define FKEYS    MO(_FUNCTION)
-#define ADJUST   MO(_ADJUST)
+#define SYM MO(_SYM)
+#define NAV MO(_NAV)
+#define FKEYS MO(_FUNCTION)
+#define ADJUST MO(_ADJUST)
 
-#define CTL_ESC  MT(MOD_LCTL, KC_ESC)
+#define CTL_ESC MT(MOD_LCTL, KC_ESC)
+#define GUI_ESC MT(MOD_LGUI, KC_ESC)
 #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
 #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
-#define ALT_ENT  MT(MOD_LALT, KC_ENT)
+#define GUI_MINS MT(MOD_RGUI, KC_MINUS)
+#define ALT_ENT MT(MOD_LALT, KC_ENT)
 
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
@@ -64,10 +68,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_DVORAK] = LAYOUT(
-     KC_TAB  ,KC_QUOTE,KC_COMM,  KC_DOT,   KC_P ,   KC_Y ,                                        KC_F,   KC_G ,  KC_C ,   KC_R ,  KC_L , KC_BSPC,
+     KC_GRAVE,KC_QUOTE,KC_COMM,  KC_DOT,   KC_P ,   KC_Y ,                                        KC_F,   KC_G ,  KC_C ,   KC_R ,  KC_L , KC_SLASH,
      CTL_ESC , KC_A ,  KC_O   ,  KC_E  ,   KC_U ,   KC_I ,                                        KC_D,   KC_H ,  KC_T ,   KC_N ,  KC_S , CTL_MINS,
      SC_LSPO ,KC_SCLN, KC_Q   ,  KC_J  ,   KC_K ,   KC_X , KC_LBRC,KC_CAPS,     FKEYS  , KC_RBRC, KC_B,   KC_M ,  KC_W ,   KC_V ,  KC_Z , SC_RSPC,
-                                 ADJUST, KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_SPC ,KC_RALT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_TAB ,KC_RALT, KC_RGUI, KC_APP
     ),
 
 /*
@@ -85,10 +89,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     KC_TAB  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
+     KC_GRAVE, KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
      CTL_ESC , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,CTL_QUOT,
      SC_LSPO , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,KC_CAPS,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, SC_RSPC,
-                                ADJUST , KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_SPC ,KC_RALT, KC_RGUI, KC_APP
+                                ADJUST , KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_TAB ,KC_RALT, KC_RGUI, KC_APP
     ),
 
 /*
@@ -106,10 +110,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_COLEMAK_DH] = LAYOUT(
-     KC_TAB  , KC_Q ,  KC_W   ,  KC_F  ,   KC_P ,   KC_B ,                                        KC_J,   KC_L ,  KC_U ,   KC_Y ,KC_SCLN, KC_BSPC,
+     KC_GRAVE, KC_Q ,  KC_W   ,  KC_F  ,   KC_P ,   KC_B ,                                        KC_J,   KC_L ,  KC_U ,   KC_Y ,KC_SCLN, KC_BSPC,
      CTL_ESC , KC_A ,  KC_R   ,  KC_S  ,   KC_T ,   KC_G ,                                        KC_M,   KC_N ,  KC_E ,   KC_I ,  KC_O , CTL_QUOT,
      SC_LSPO , KC_Z ,  KC_X   ,  KC_C  ,   KC_D ,   KC_V , KC_LBRC,KC_CAPS,     FKEYS  , KC_RBRC, KC_K,   KC_H ,KC_COMM, KC_DOT ,KC_SLSH, SC_RSPC,
-                                 ADJUST, KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_SPC ,KC_RALT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_TAB ,KC_RALT, KC_RGUI, KC_APP
+    ),
+
+// /*
+//  * Adjust layer: MacOS
+//  *
+//  * ,-------------------------------------------.                              ,-------------------------------------------.
+//  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+//  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+//  * |LGUI/ESC|      |      |      |      |      |      |                              |      |      |      |      |RGUI / -|
+//  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+//  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+//  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+//  *                        |      |      | Ctrl |      |      |  |      |      | Ctrl |      |      |
+//  *                        |      |      |      |      |      |  |      |      |      |      |      |
+//  *                        `----------------------------------'  `----------------------------------'
+//  */
+    [_MAC] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+      GUI_ESC, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, GUI_MINS,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                                 _______, KC_LCTL, _______, _______, _______, _______, _______, _______, KC_RCTL, _______
     ),
 
 /*
@@ -181,7 +206,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |      |      |QWERTY|      |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      |Dvorak|      |      |                              | TOG  | SAI  | HUI  | VAI  | MOD  |        |
+ * |        |      |      |Dvorak| Mac  |      |                              | TOG  | SAI  | HUI  | VAI  | MOD  |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |Colmak|      |      |      |      |  |      |      |      | SAD  | HUD  | VAD  | RMOD |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -191,7 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_ADJUST] = LAYOUT(
       _______, _______, _______, QWERTY , _______, _______,                                    _______, _______, _______, _______,  _______, _______,
-      _______, _______, _______, DVORAK , _______, _______,                                    RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI,  RGB_MOD, _______,
+      _______, _______, _______, DVORAK ,   MAC,   _______,                                    RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI,  RGB_MOD, _______,
       _______, _______, _______, COLEMAK, _______, _______,_______, _______, _______, _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD, _______,
                                  _______, _______, _______,_______, _______, _______, _______, _______, _______, _______
     ),
@@ -202,11 +227,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  * ,-------------------------------------------.                              ,-------------------------------------------.
 //  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
 //  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-//  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+//  * |LGUI/ESC|      |      |      |      |      |      |                              |      |      |      |      |RGUI / -|
 //  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 //  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
 //  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
-//  *                        |      |      |      |      |      |  |      |      |      |      |      |
+//  *                        |      |      | Ctrl |      |      |  |      |      | Ctrl |      |      |
 //  *                        |      |      |      |      |      |  |      |      |      |      |      |
 //  *                        `----------------------------------'  `----------------------------------'
 //  */
@@ -242,36 +267,42 @@ bool oled_task_user(void) {
 
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Layer: "), false);
-        switch (get_highest_layer(layer_state|default_layer_state)) {
+        switch (get_highest_layer((layer_state | default_layer_state) & ~((layer_state_t)1 << _MAC))) {
             case _DVORAK:
-                oled_write_P(PSTR("Dvorak\n"), false);
+                oled_write_P(PSTR("Dvorak"), false);
                 break;
             case _QWERTY:
-                oled_write_P(PSTR("QWERTY\n"), false);
+                oled_write_P(PSTR("QWERTY"), false);
                 break;
             case _COLEMAK_DH:
-                oled_write_P(PSTR("Colemak-DH\n"), false);
+                oled_write_P(PSTR("Colemak-DH"), false);
                 break;
             case _NAV:
-                oled_write_P(PSTR("Nav\n"), false);
+                oled_write_P(PSTR("Nav"), false);
                 break;
             case _SYM:
-                oled_write_P(PSTR("Sym\n"), false);
+                oled_write_P(PSTR("Sym"), false);
                 break;
             case _FUNCTION:
-                oled_write_P(PSTR("Function\n"), false);
+                oled_write_P(PSTR("Function"), false);
                 break;
             case _ADJUST:
-                oled_write_P(PSTR("Adjust\n"), false);
+                oled_write_P(PSTR("Adjust"), false);
                 break;
             default:
-                oled_write_P(PSTR("Undefined\n"), false);
+                oled_write_P(PSTR("Undefined"), false);
         }
+
+        if (layer_state_is(_MAC)) {
+            oled_write_P(PSTR(" + Mac"), false);
+        }
+
+        oled_write_P(PSTR("\n"), false);
 
         // Write host Keyboard LED Status to OLEDs
         led_t led_usb_state = host_keyboard_led_state();
-        oled_write_P(led_usb_state.num_lock    ? PSTR("NUMLCK ") : PSTR("       "), false);
-        oled_write_P(led_usb_state.caps_lock   ? PSTR("CAPLCK ") : PSTR("       "), false);
+        oled_write_P(led_usb_state.num_lock ? PSTR("NUMLCK ") : PSTR("       "), false);
+        oled_write_P(led_usb_state.caps_lock ? PSTR("CAPLCK ") : PSTR("       "), false);
         oled_write_P(led_usb_state.scroll_lock ? PSTR("SCRLCK ") : PSTR("       "), false);
     } else {
         // clang-format off
@@ -342,7 +373,7 @@ bool oled_task_user(void) {
             0x02, 0x00, 0x0c, 0x00, 0x00, 0x00, 0x08, 0x08, 0x08, 0x08, 0x10, 0x10, 0x30, 0x20, 0x20, 0x00
         };
         size_t demonic_eye_size = sizeof(demonic_eye);
-// clang-format on
+        // clang-format on
         if (rand() % 20 == 0) {
             char PROGMEM distorted[demonic_eye_size];
             memcpy(distorted, demonic_eye, demonic_eye_size);
@@ -385,11 +416,10 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
         default_layer_set(new_layer_state);
     } else if (index == 1) {
-        // Page up/Page down
         if (clockwise) {
-            tap_code(KC_PGDN);
+            tap_code(KC_DEL);
         } else {
-            tap_code(KC_PGUP);
+            tap_code(KC_BSPC);
         }
     }
 
