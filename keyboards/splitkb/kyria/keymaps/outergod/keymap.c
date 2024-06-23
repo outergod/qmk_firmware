@@ -45,7 +45,7 @@ enum layers {
 #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
 #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 #define GUI_MINS MT(MOD_RGUI, KC_MINUS)
-#define ALT_ENT MT(MOD_LALT, KC_ENT)
+#define ALT_TAB MT(MOD_LALT, KC_TAB)
 
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_GRAVE,KC_QUOTE,KC_COMM,  KC_DOT,   KC_P ,   KC_Y ,                                        KC_F,   KC_G ,  KC_C ,   KC_R ,  KC_L , KC_SLASH,
      CTL_ESC , KC_A ,  KC_O   ,  KC_E  ,   KC_U ,   KC_I ,                                        KC_D,   KC_H ,  KC_T ,   KC_N ,  KC_S , CTL_MINS,
      SC_LSPO ,KC_SCLN, KC_Q   ,  KC_J  ,   KC_K ,   KC_X , KC_LBRC,KC_CAPS,     FKEYS  , KC_RBRC, KC_B,   KC_M ,  KC_W ,   KC_V ,  KC_Z , SC_RSPC,
-                                 ADJUST, KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_TAB ,KC_RALT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI, ALT_TAB, KC_SPC , NAV   ,     SYM    , KC_ENT ,KC_RALT, KC_RGUI, KC_APP
     ),
 
 /*
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_GRAVE, KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
      CTL_ESC , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,CTL_QUOT,
      SC_LSPO , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,KC_CAPS,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, SC_RSPC,
-                                ADJUST , KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_TAB ,KC_RALT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI, ALT_TAB, KC_SPC , NAV   ,     SYM    , KC_ENT ,KC_RALT, KC_RGUI, KC_APP
     ),
 
 /*
@@ -113,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_GRAVE, KC_Q ,  KC_W   ,  KC_F  ,   KC_P ,   KC_B ,                                        KC_J,   KC_L ,  KC_U ,   KC_Y ,KC_SCLN, KC_BSPC,
      CTL_ESC , KC_A ,  KC_R   ,  KC_S  ,   KC_T ,   KC_G ,                                        KC_M,   KC_N ,  KC_E ,   KC_I ,  KC_O , CTL_QUOT,
      SC_LSPO , KC_Z ,  KC_X   ,  KC_C  ,   KC_D ,   KC_V , KC_LBRC,KC_CAPS,     FKEYS  , KC_RBRC, KC_K,   KC_H ,KC_COMM, KC_DOT ,KC_SLSH, SC_RSPC,
-                                 ADJUST, KC_LGUI, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_TAB ,KC_RALT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI, ALT_TAB, KC_SPC , NAV   ,     SYM    , KC_ENT ,KC_RALT, KC_RGUI, KC_APP
     ),
 
 // /*
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
       GUI_ESC, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, GUI_MINS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                                 _______, KC_LCTL, _______, _______, _______, _______, _______, _______, KC_RCTL, _______
+                                 _______, KC_LCTL, _______, _______, _______, _______, _______, _______, KC_RCTL, KC_MCTL
     ),
 
 /*
