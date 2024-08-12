@@ -38,3 +38,5 @@
 #ifdef ENCODER_ENABLE
 #    define ENCODER_RESOLUTION 2
 #endif
+
+#define TAPPING_TERM 200
