@@ -77,7 +77,7 @@ fi
 "$RUNTIME" run --rm -it $usb_args \
 	$uid_arg \
 	-w /qmk_firmware \
-	-v "$dir":/qmk_firmware \
+	-v "$dir":/qmk_firmware:z \
 	-e ALT_GET_KEYBOARDS=true \
 	-e SKIP_GIT="$SKIP_GIT" \
 	-e MAKEFLAGS="$MAKEFLAGS" \
