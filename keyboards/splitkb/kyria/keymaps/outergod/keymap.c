@@ -20,7 +20,8 @@ enum layers {
     _QWERTY,
     _MAC,
     _NAV,
-    _SYM,
+    _SYM1,
+    _SYM2,
     _FUNCTION,
     _ADJUST,
 };
@@ -30,7 +31,8 @@ enum layers {
 #define DVORAK DF(_DVORAK)
 #define MAC TG(_MAC)
 
-#define SYM MO(_SYM)
+#define SYM1 MO(_SYM1)
+#define SYM2 MO(_SYM2)
 #define NAV MO(_NAV)
 #define FKEYS MO(_FUNCTION)
 #define ADJUST MO(_ADJUST)
@@ -66,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_GRAVE,KC_QUOTE,KC_COMM,  KC_DOT,   KC_P ,   KC_Y ,                                        KC_F,   KC_G ,  KC_C ,   KC_R ,  KC_L , KC_SLASH,
      CTL_ESC , KC_A ,  KC_O   ,  KC_E  ,   KC_U ,   KC_I ,                                        KC_D,   KC_H ,  KC_T ,   KC_N ,  KC_S , CTL_MINS,
      SC_LSPO ,KC_SCLN, KC_Q   ,  KC_J  ,   KC_K ,   KC_X , KC_LBRC, NAV   ,     FKEYS  , KC_RBRC, KC_B,   KC_M ,  KC_W ,   KC_V ,  KC_Z , SC_RSPC,
-                                 ADJUST, KC_LGUI, ALT_TAB, KC_SPC , SYM   ,     SYM    , KC_ENT ,KC_RALT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI, ALT_TAB, KC_SPC , SYM1  ,     SYM2   , KC_ENT ,KC_RALT, KC_RGUI, KC_APP
     ),
 
 /*
@@ -87,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_GRAVE, KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
      CTL_ESC , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,CTL_QUOT,
      SC_LSPO , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC, NAV   ,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, SC_RSPC,
-                                 ADJUST, KC_LGUI, ALT_TAB, KC_SPC , SYM   ,     SYM    , KC_ENT ,KC_RALT, KC_RGUI, KC_APP
+                                 ADJUST, KC_LGUI, ALT_TAB, KC_SPC , SYM1  ,     SYM2   , KC_ENT ,KC_RALT, KC_RGUI, KC_APP
     ),
 
 // /*
@@ -146,7 +148,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_SYM] = LAYOUT(
+    [_SYM1] = LAYOUT(
+      KC_GRV ,   KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                                       KC_6 ,   KC_7 ,   KC_8 ,   KC_9 ,   KC_0 , KC_EQL ,
+     KC_TILD , KC_EXLM,  KC_AT , KC_HASH,  KC_DLR, KC_PERC,                                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PLUS,
+     KC_PIPE , KC_BSLS, KC_COLN, KC_SCLN, KC_MINS, KC_LBRC, KC_LCBR, _______, _______, KC_RCBR, KC_RBRC, KC_UNDS, KC_COMM,  KC_DOT, KC_SLSH, KC_QUES,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
+    [_SYM2] = LAYOUT(
       KC_GRV ,   KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                                       KC_6 ,   KC_7 ,   KC_8 ,   KC_9 ,   KC_0 , KC_EQL ,
      KC_TILD , KC_EXLM,  KC_AT , KC_HASH,  KC_DLR, KC_PERC,                                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PLUS,
      KC_PIPE , KC_BSLS, KC_COLN, KC_SCLN, KC_MINS, KC_LBRC, KC_LCBR, _______, _______, KC_RCBR, KC_RBRC, KC_UNDS, KC_COMM,  KC_DOT, KC_SLSH, KC_QUES,
@@ -252,7 +261,8 @@ bool oled_task_user(void) {
             case _NAV:
                 oled_write_P(PSTR("Nav"), false);
                 break;
-            case _SYM:
+            case _SYM1:
+            case _SYM2:
                 oled_write_P(PSTR("Sym"), false);
                 break;
             case _FUNCTION:
