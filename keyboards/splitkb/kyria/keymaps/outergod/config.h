@@ -31,12 +31,8 @@
 #    define RGBLIGHT_SAT_STEP 8
 #    define RGBLIGHT_VAL_STEP 8
 #    ifndef RGBLIGHT_LIMIT_VAL
-#    	define RGBLIGHT_LIMIT_VAL 150
+#        define RGBLIGHT_LIMIT_VAL 150
 #    endif
-#endif
-
-#ifdef ENCODER_ENABLE
-#    define ENCODER_RESOLUTION 2
 #endif
 
 #define TAPPING_TERM 200

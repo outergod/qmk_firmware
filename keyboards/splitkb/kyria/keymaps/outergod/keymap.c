@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAV] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                                     KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_VOLU, KC_DEL,
       _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_INS,
-      _______, _______, _______, _______, _______, _______, _______, _______, KC_SCRL, KC_CAPS, KC_PAUSE,KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_PSCR,
+      _______, _______, _______, _______, _______, _______, _______, _______, KC_SCRL, KC_CAPS, KC_PAUSE,KC_BSPC, KC_MPLY, KC_DEL,  KC_MUTE, KC_PSCR,
                                  _______, _______, _______, _______, _______, KC_NUM,  _______, _______, _______, _______
     ),
 
@@ -370,26 +370,6 @@ bool oled_task_user(void) {
             oled_write_raw_P(distorted, demonic_eye_size);
         } else {
             oled_write_raw_P(demonic_eye, demonic_eye_size);
-        }
-    }
-
-    return false;
-}
-#endif
-
-#ifdef ENCODER_ENABLE
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
-            tap_code(KC_PGUP);
-        }
-    } else if (index == 1) {
-        if (clockwise) {
-            tap_code(KC_DEL);
-        } else {
-            tap_code(KC_BSPC);
         }
     }
 
